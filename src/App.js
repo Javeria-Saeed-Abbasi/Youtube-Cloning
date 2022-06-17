@@ -1,24 +1,52 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
+import { Grid } from "@material-ui/core";
+import  SearchBar  from './components/SearchBar';
+import  VideoList  from './components/VideoList';
+import  VideoDetails  from './components/VideoDetails';
+import youtubeApi from './api/youtube-api';
+import {Button} from '@material-ui/core';
 
-function App() {
+
+const App = () => {
+ const handleSubmit =  async (searchTerm) => {
+ console.log(searchTerm)
+
+  try{
+  const response = await youtubeApi.get('search' , {
+    params: { 
+        part: 'snippet',
+        maxResults: '5',
+        key : 'AIzaSyCFXqNsbbXh7LEnJkWaxN8N6u6AQ4_GAiY',
+        q: 'google',
+    }
+  });
+
+  console.log(response);
+  }
+  catch(error){
+    console.log(error);
+  }
+ } 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+       <Grid justifyContent='center' container>
+          <Grid item xs={12}>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
+               <SearchBar onFormSubmit={handleSubmit}/>
+               <Button variant="contained" onClick={() => handleSubmit()}>Submit</Button>
+
+              </Grid>
+              <Grid item xs={8}>
+                <VideoDetails></VideoDetails>
+              </Grid>
+              <Grid item xs={8}>
+                <VideoList></VideoList>
+              </Grid>
+            </Grid>
+          </Grid>
+       </Grid>
   );
 }
 
