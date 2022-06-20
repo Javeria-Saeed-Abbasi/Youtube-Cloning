@@ -11,4 +11,4 @@ const VideoList = ({ videos }) => {
     </>
   )
 }
-export default VideoList
+export default VideoList;

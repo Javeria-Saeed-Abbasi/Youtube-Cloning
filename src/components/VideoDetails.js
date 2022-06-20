@@ -13,7 +13,7 @@ const VideoDetails  = ({video}) => {
             <iframe frameBorder="0" height="100%" width="100%" title="Video Player" src={videoSrc}/>
             </Paper>
             <Paper elevation={6} style={{padding: '15px' , height:'70%'}}>
-          <Typography variant="h5">{video.snippet.title} - {video.snippet.channelTitle}</Typography>
+            <Typography variant="h5">{video.snippet.title} - {video.snippet.channelTitle}</Typography>
           <Typography variant="h6">{video.snippet.channelTitle}</Typography>
           <Typography variant="subtitle2">{video.snippet.description}</Typography>
             </Paper>
