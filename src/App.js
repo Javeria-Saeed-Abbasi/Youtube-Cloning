@@ -10,10 +10,10 @@ import { Button } from '@material-ui/core'
 import { useState } from 'react'
 
 const App = () => {
-const [ video, setVideo ] = useState();
-const [ selectedVideo, setSelectedVideo ] = useState();
-  
-const handleSubmit = async (searchTerm) => {
+  const [video, setVideo] = useState()
+  const [selectedVideo, setSelectedVideo] = useState()
+
+  const handleSubmit = async (searchTerm) => {
     console.log(searchTerm)
 
     try {
@@ -25,14 +25,12 @@ const handleSubmit = async (searchTerm) => {
           q: 'shadab Khan',
         },
       })
-      setVideo(res.data.items);
-      setSelectedVideo(res.data.items[0]);
+      setVideo(res.data.items)
+      setSelectedVideo(res.data.items[0])
       console.log(res)
     } catch (error) {
       console.log(error)
     }
-
-
   }
   return (
     <Grid justifyContent="center" container>
@@ -44,17 +42,16 @@ const handleSubmit = async (searchTerm) => {
               Submit
             </Button>
           </Grid>
-          <Grid item xs={8}>
-            <VideoDetails video= {selectedVideo}>
-
-            </VideoDetails>
-          </Grid>
-          <Grid item xs={4}>
-            <VideoList videos = {video}></VideoList>
-          </Grid>
-          {/* <Grid item xs={8}>
-            <VideoItem></VideoItem>
-          </Grid> */}
+          {video ? (
+            <>
+              <Grid item xs={8}>
+                <VideoDetails video={selectedVideo}></VideoDetails>
+              </Grid>
+              <Grid item xs={4}>
+                <VideoList videos={video}></VideoList>
+              </Grid>
+            </>
+          ) : null}
         </Grid>
       </Grid>
     </Grid>
