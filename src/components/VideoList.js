@@ -6,13 +6,11 @@ const VideoList = ({ videos }) => {
   return (
     <>
       {videos.map((video, id) => (
-        <VideoItem key={id} video={video} />
-      ))}
-         <Grid container spacing={10}>
-        <VideoItem/>
+        <Grid container spacing={10}>
+          <VideoItem key={id} video={video} />
         </Grid>
+      ))}
     </>
- 
   )
 }
-export default VideoList;
+export default VideoList
